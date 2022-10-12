@@ -6,9 +6,9 @@ namespace cSharp_netflix.Models
     public class Actor
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Il nome dell'attore e' necessario")]
+        [Required(ErrorMessage = "Inserisci il nome")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Il cognome dell' attore e' necessario")]
+        [Required(ErrorMessage = "Inserisci il cognome")]
         public string Surname { get; set; }
         public List<MediaInfo> MediaInfos { get; set; }
 
