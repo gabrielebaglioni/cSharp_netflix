@@ -19,9 +19,6 @@ public class ApplicationDbContext : DbContext
 
     }
     //DATA SEEDING
-  
-    
-
-
+   
 
 }
