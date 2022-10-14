@@ -11,12 +11,12 @@ namespace cSharp_netflix.Controllers.api
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class MediaController : Controller
+    public class HomeController : Controller
     {
         // GET: /<controller>/
         
         ApplicationDbContext _ctx;
-        public MediaController()
+        public HomeController()
         {
             _ctx = new ApplicationDbContext();
         }
