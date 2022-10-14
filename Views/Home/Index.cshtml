@@ -1,8 +1,29 @@
 ﻿@using cSharp_netflix.Models;
 @model List<cSharp_netflix.Models.Actor>
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Actor actor in Model)
+                {
+                    <tr>
+                        <td>
+                            @actor.Name
+                        </td>
+                        <td>@actor.Surname</td>
+                        <td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 </div>
 
 
@@ -15,4 +36,5 @@
         })
         .catch(error => {
             console.log(error);
-        });</script>
+        });
+</script>
