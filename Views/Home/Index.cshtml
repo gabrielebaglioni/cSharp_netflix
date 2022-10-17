@@ -1,40 +1,62 @@
 ﻿@using cSharp_netflix.Models;
-@model List<cSharp_netflix.Models.Actor>
-<div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Cognome</th>
 
-                </tr>
-            </thead>
+    <h1>Home page</h1>
 
-            <tbody>
-                @foreach (Actor actor in Model)
-                {
-                    <tr>
-                        <td>
-                            @actor.Name
-                        </td>
-                        <td>@actor.Surname</td>
-                        <td>
-                    </tr>
+
+    <body onload="cerca()">
+        <section class="text-center  " id="pizza-library">
+            <div class="container">
+                <input class="js-search" type="text" placeholder="Cerca l'attore" />
+                <div class="row">
+                   
+                </div>
+            </div>
+        </section>
+    </body>
+
+
+    <script type="text/javascript">
+
+        const cardActor = document.querySelector(".row");
+        const actorSearch = document.querySelector(".js-search")
+        let list;
+        actorSearch.addEventListener("keyup", cerca)
+        function cerca() {
+            let name = this.value;
+            risultati(name);
+
+        }
+        function risultati(name) {
+            axios.get("api/home/get", {
+                params: {
+                    name: name
                 }
-            </tbody>
-        </table>
-    }
-</div>
+            })
+                .then(function (response) {
+                    console.log(response);
+                    list = response.data;
+                    if (list.length > 0) {
+                        cardActor.innerHTML = ""
+                        list.forEach(actor => {
+                            cardActor.innerHTML +=
+                                `<div class="col-4 py-2" >
 
+                                    <a href="/Home/Details/${actor.id}" class="text-decoration-none text-danger card" >
+                                    @*<a href="@Url.Action("Details", "Home", new {Id = actor.id})" class="btn btn-danger my-3">Details*@
 
-<script type="text/javascript">
-    let actors;
-    axios.get("api/home/get")
-        .then(response => {
-            actors = response.data;
-            console.log(actors);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-</script>
+                                    <div class="card bg-dark bg-gradient text-white border-2  rounded-lg" >
+
+                                        <span class="py-1" >Name ${actor.name}</span>
+                                        <span class="py-1" >Surname ${actor.surname} </span>
+                                        </div>
+                                    </a>
+                                    </div>`
+                        } )
+                    } else {
+                        cardActor.innerHTML = "<h1>non ci sono attori</h1>"
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        }</script>

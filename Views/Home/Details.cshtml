@@ -1,0 +1,40 @@
+﻿@model Actor
+<h1>Dettaglio attore</h1>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="js_actor_container">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    debugger;
+    let id = window.location.pathname.split('/')[3];
+
+    axios.get(`/api/home/get/${id}`).then(res => {
+
+        const actor = res.data;
+        document.querySelector('.js_actor_container').innerHTML +=
+            `
+            <div class="col-12 col-md-4 p-2">
+                    <div class="card actor h-100">
+
+                        <div class="card-body">
+                        <h5 class="card-title">${actor.Name}</h5>
+                        <p class="card-text">${actor.Surname}</p>
+                        </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center gap-4">
+                <a href="@Url.Action("Index", "Home")" class="btn btn-danger my-3">Home</a>
+            </div>
+
+            `;
+    }).catch(err => {
+        console.log(err);
+    })</script>
