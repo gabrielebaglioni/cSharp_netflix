@@ -1,4 +1,4 @@
-﻿@model Actor
+﻿
 <h1>Dettaglio attore</h1>
 
 
@@ -21,15 +21,15 @@
         const actor = res.data;
         document.querySelector('.js_actor_container').innerHTML +=
             `
-            <div class="col-12 col-md-4 p-2">
-                    <div class="card actor h-100">
+            <div class="col-4 py-2" >
 
-                        <div class="card-body">
-                        <h5 class="card-title">${actor.Name}</h5>
-                        <p class="card-text">${actor.Surname}</p>
-                        </div>
-                </div>
-            </div>
+                                 
+            @*<a href="@Url.Action("Details", "Home", new {Id = actor.id})" class="btn btn-danger my-3">Details*@
+                <div class="card bg-dark bg-gradient text-white border-2  rounded-lg" >
+                   <span class="py-1" >Name ${actor.name}</span>
+                   <span class="py-1" >Surname ${actor.surname} </span>
+                 </div>
+             
             <div class="d-flex justify-content-center align-items-center gap-4">
                 <a href="@Url.Action("Index", "Home")" class="btn btn-danger my-3">Home</a>
             </div>
