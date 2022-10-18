@@ -11,6 +11,7 @@ public class ApplicationDbContext : DbContext
         public DbSet<Actor> Actors { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Feature> Features { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
     private const string ConnectionString = "Server=localhost;Database=db_netflix;User=sa;Password=Scheggia12$;";
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
