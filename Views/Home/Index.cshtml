@@ -17,10 +17,10 @@
 
     <script type="text/javascript">
 
-        const cardActor = document.querySelector(".row");
-        const actorSearch = document.querySelector(".js-search")
+        const Actor = document.querySelector(".row");
+        const Search = document.querySelector(".js-search")
         let list;
-        actorSearch.addEventListener("keyup", cerca)
+        Search.addEventListener("keyup", cerca)
         function cerca() {
             let name = this.value;
             risultati(name);
@@ -36,9 +36,9 @@
                     console.log(response);
                     list = response.data;
                     if (list.length > 0) {
-                        cardActor.innerHTML = ""
+                        Actor.innerHTML = ""
                         list.forEach(actor => {
-                            cardActor.innerHTML +=
+                            Actor.innerHTML +=
                                 `<div class="col-4 py-2" >
 
                                     <a href="/Home/Details/${actor.id}" class="text-decoration-none text-danger card" >
@@ -53,7 +53,7 @@
                                     </div>`
                         } )
                     } else {
-                        cardActor.innerHTML = "<h1>non ci sono attori</h1>"
+                        Actor.innerHTML = "<h1>non ci sono attori</h1>"
                     }
                 })
                 .catch(function (error) {
