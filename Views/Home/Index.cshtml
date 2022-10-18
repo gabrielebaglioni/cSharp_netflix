@@ -2,17 +2,32 @@
 
     <h1>Home page</h1>
 
+    <body onload="cercaAttore()">
+          <div class="container">
+                <input class="js-search" type="text" placeholder="Cerca l'attore" />
+                <div class="row">
 
-    <body onload="cerca()">
+                </div>
+            </div>
+        <div class="row js_no_post text-center d-none">
+            <div class="col-12">
+                <h3>Non hai inserito alcun post</h3>
+            </div>
+        </div>
+        <div class="row">
+             @*qui verranno mostrati gli elementi*@ 
+        </div>
+    </body>
+    @*<body onload="search()">
         <section class="text-center  " id="pizza-library">
             <div class="container">
                 <input class="js-search" type="text" placeholder="Cerca l'attore" />
                 <div class="row">
-                   
+
                 </div>
             </div>
         </section>
-    </body>
+    </body>*@
 
 
     <script type="text/javascript">
@@ -20,8 +35,8 @@
         const Actor = document.querySelector(".row");
         const Search = document.querySelector(".js-search")
         let list;
-        Search.addEventListener("keyup", cerca)
-        function cerca() {
+        Search.addEventListener("keyup", cercaAttore)
+        function cercaAttore() {
             let name = this.value;
             risultati(name);
 
@@ -40,12 +55,9 @@
                         list.forEach(actor => {
                             Actor.innerHTML +=
                                 `<div class="col-4 py-2" >
-
-                                    <a href="/Home/Details/${actor.id}" class="text-decoration-none text-danger card" >
+                                    <a href="/Home/Details/${actor.id}">
                                     @*<a href="@Url.Action("Details", "Home", new {Id = actor.id})" class="btn btn-danger my-3">Details*@
-
-                                    <div class="card bg-dark bg-gradient text-white border-2  rounded-lg" >
-
+                                    <div class="card bg-danger text-black border-2  rounded-lg" >
                                         <span class="py-1" >Name ${actor.name}</span>
                                         <span class="py-1" >Surname ${actor.surname} </span>
                                         </div>
