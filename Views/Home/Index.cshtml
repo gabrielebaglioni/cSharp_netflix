@@ -3,20 +3,30 @@
     <h1>Home page</h1>
 
     <body onload="cercaAttore()">
-          <div class="container">
-                <input class="js-search" type="text" placeholder="Cerca l'attore" />
-                <div class="row">
+        <div class="container">
+            <input class="js-search" type="text" placeholder="Cerca l'attore" />
+            <div class="row">
 
-                </div>
             </div>
+        </div>
         <div class="row js_no_post text-center d-none">
             <div class="col-12">
                 <h3>Non hai inserito alcun post</h3>
             </div>
         </div>
         <div class="row">
-             @*qui verranno mostrati gli elementi*@ 
+            @*qui verranno mostrati gli elementi*@
         </div>
+        @*@foreach (var item in Model)
+        {
+            <tr>
+                
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+               
+            </tr>
+        }*@
     </body>
   
 
@@ -47,12 +57,14 @@
                                 `<div class="col-4 py-2" >
                                     <a href="/Home/Details/${actor.id}">
                                     @*<a href="@Url.Action("Details", "Home", new {Id = actor.id})" class="btn btn-danger my-3">Details*@
-                                    <div class="card bg-danger text-black border-2  rounded-lg" >
-                                        <span class="py-1" >Name ${actor.name}</span>
-                                        <span class="py-1" >Surname ${actor.surname} </span>
+                                        <div class="card bg-danger text-black border-2  rounded-lg" >
+                                            <span class="py-1" >Name ${actor.name}</span>
+                                            <span class="py-1" >Surname ${actor.surname} </span>
                                         </div>
+                                        @*<a asp-action="Delete" asp-route-id="${actor.Id}">Delete</a>*@
+                                        <button onclick="deleteActor(${actor.id})" class="btn btn-danger">Elimina</button>
                                     </a>
-                                    </div>`
+                                  </div>`
                         } )
                     } else {
                         Actor.innerHTML = "<h1>non ci sono attori</h1>"
@@ -61,4 +73,16 @@
                 .catch(function (error) {
                     console.log(error);
                 })
+        }
+        function deleteActor(id) {
+            axios.delete('/api/home/delete/' + id).then(res => {
+                console.log(res);
+                loadList("");
+                alert('scusa Paolo, mi hai eleminato :(');
+            }).catch(err => {
+                console.log(err);
+                alert('Non posso elimanarla paolooooo!');
+            })
+
+
         }</script>

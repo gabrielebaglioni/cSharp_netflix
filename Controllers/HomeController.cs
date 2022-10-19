@@ -25,6 +25,10 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult Edit()
+    {
+        return View();
+    }
 
     public IActionResult Privacy()
     {
